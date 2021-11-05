@@ -1,10 +1,10 @@
 # MySQL Cheat Sheet
 
-[Populating and Modifying Tables](url)
-[Where Clause](url)
-[Querying Multiple Tables](url)
-[SETS](url)
-[Temporary tables and Views](url)
+- [Populating and Modifying Tables](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables)
+- [Where Clause](https://github.com/jeznacki/SQL-Cheatsheet#where-clause)
+- [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables)
+- [SETS](https://github.com/jeznacki/SQL-Cheatsheet#sets)
+- [Temporary tables and Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views)
 
 ## Populating and Modifying Tables
 
