@@ -5,6 +5,7 @@
 - [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables)
 - [SETS](https://github.com/jeznacki/SQL-Cheatsheet#sets)
 - [Temporary tables and Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views)
+- [Data Generation, Manipulation,and Conversion](url)
 
 ## Populating and Modifying Tables
 
@@ -235,6 +236,10 @@ issue queries against it, as in:
 ```sql
 mysql> SELECT first_name, last_name FROM cust_vw WHERE active = 0;
 ```
+
+## Data Generation, Manipulation, and Conversion
+
+
 
 ## Column Aliases
 ```sql
