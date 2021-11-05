@@ -77,11 +77,7 @@ SELECT * FROM users WHERE is_admin > 0;
 ## Column Aliases
 ```sql
 
-SELECT language_id,
--> 'COMMON' language_usage,
--> language_id * 3.1415927 lang_pi_value,
--> upper(name) language_name
--> FROM language;
+SELECT language_id, 'COMMON' language_usage, language_id * 3.1415927 lang_pi_value, upper(name) language_name FROM language;
 
 +-------------+----------------+---------------+---------------+
 | language_id | language_usage | lang_pi_value | language_name |
@@ -94,11 +90,9 @@ SELECT language_id,
 | 6 | COMMON | 18.8495562 | GERMAN |
 +-------------+----------------+---------------+---------------+
 
-SELECT language_id,
--> 'COMMON' AS language_usage,
--> language_id * 3.1415927 AS lang_pi_value,
--> upper(name) AS language_name
--> FROM language;
+//clearer
+
+SELECT language_id,'COMMON' AS language_usage, language_id * 3.1415927 AS lang_pi_value, upper(name) AS language_name FROM language;
 
 ```
 
