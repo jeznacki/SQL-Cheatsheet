@@ -1,7 +1,5 @@
 # MySQL Cheat Sheet
 
-![Screenshot](screenshot.png) //image example
-
 ## Populating and Modifying Tables
 
 ### Create Table
