@@ -1,4 +1,4 @@
-# MySQL Cheat Sheet
+# SQL Cheat Sheet
 
 - [Populating and Modifying Tables](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables)
 - [Where Clause](https://github.com/jeznacki/SQL-Cheatsheet#where-clause)
