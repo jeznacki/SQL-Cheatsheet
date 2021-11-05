@@ -269,6 +269,9 @@ SELECT INSERT('goodbye world', 9, 0, 'cruel ') string;
 
 ### Numeric
 
+//PAGE 131
+
+
 
 
 ## Column Aliases
