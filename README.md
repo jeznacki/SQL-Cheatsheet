@@ -117,18 +117,29 @@ ON c.address_id = a.address_id;
 ```sql
 
 SELECT c.first_name, c.last_name, addr.address, addr.city
--> FROM customer c
--> INNER JOIN
--> (SELECT a.address_id, a.address, ct.city
--> FROM address a
--> INNER JOIN city ct
--> ON a.city_id = ct.city_id
--> WHERE a.district = 'California'
--> ) addr
--> ON c.address_id = addr.address_id;
+FROM customer c
+INNER JOIN
+(SELECT a.address_id, a.address, ct.city
+  FROM address a
+  INNER JOIN city ct
+  ON a.city_id = ct.city_id
+  WHERE a.district = 'California'
+  ) addr
+  ON c.address_id = addr.address_id;
 
 ```
+## Self-Joins
 
+you can actually join a table to itself. This might seem like a strange thing to do at first, but there are valid reasons for doing so. Some tables include a self-referencing foreign key, which means that it includes a column that points to the primary key within the same table.
+
+
+```sql
+SELECT f.title
+ FROM film f
+ INNER JOIN film f_prnt
+ ON f_prnt.film_id = f.prequel_film_id
+ WHERE f.prequel_film_id IS NOT NULL;
+```
 
 ## Temporary tables and Views
 
