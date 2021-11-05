@@ -155,12 +155,22 @@ SELECT 'CUST' typ, c.first_name, c.last_name
  SELECT 'ACTR' typ, a.first_name, a.last_name
  FROM actor a;
 ```
+
+### intersect Operator
+
+If the two queries in a compound query return nonoverlapping data sets, then the
+intersection will be an empty set.
+
+![See Image](intercest.png)
+
 ```sql
-SELECT f.title
- FROM film f
- INNER JOIN film f_prnt
- ON f_prnt.film_id = f.prequel_film_id
- WHERE f.prequel_film_id IS NOT NULL;
+SELECT c.first_name, c.last_name
+FROM customer c
+WHERE c.first_name LIKE 'D%' AND c.last_name LIKE 'T%'
+INTERSECT
+SELECT a.first_name, a.last_name
+FROM actor a
+WHERE a.first_name LIKE 'D%' AND a.last_name LIKE 'T%';
 ```
 ```sql
 SELECT f.title
