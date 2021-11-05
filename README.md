@@ -5,7 +5,7 @@
 - [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables)
 - [SETS](https://github.com/jeznacki/SQL-Cheatsheet#sets)
 - [Temporary tables and Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views)
-- [Data Generation, Manipulation,and Conversion](url)
+- [Data Generation, Manipulation,and Conversion](https://github.com/jeznacki/SQL-Cheatsheet#data-generation-manipulation-and-conversion)
 
 ## Populating and Modifying Tables
 
@@ -234,10 +234,40 @@ tucks away the select statement for future use. Now that the view exists, you ca
 issue queries against it, as in:
 
 ```sql
-mysql> SELECT first_name, last_name FROM cust_vw WHERE active = 0;
+SELECT first_name, last_name FROM cust_vw WHERE active = 0;
 ```
+<br/><br/>
 
 ## Data Generation, Manipulation, and Conversion
+
+### Strings
+
+#### Length
+```sql
+SELECT LENGTH(char_fld) char_length, LENGTH(vchar_fld) varchar_length, LENGTH(text_fld) text_length FROM string_tbl;
+```
+| char_length | varchar_length | text_length |
+|-------------|----------------|-------------|
+| 28 | 28 | 28 |
+
+#### Position
+```sql
+SELECT POSITION('characters' IN vchar_fld) FROM string_tbl;
+```
+| POSITION('characters' IN vchar_fld) |
+|-------------------------------------|
+| 19 |
+
+#### Instert / Replace
+
+```sql
+SELECT INSERT('goodbye world', 9, 0, 'cruel ') string;
+```
+| string |
+|---------------------|
+| goodbye cruel world |
+
+### Numeric
 
 
 
