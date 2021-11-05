@@ -74,40 +74,6 @@ SELECT * FROM customerWHERE last_name REGEXP '^[QY]';
 ```
 
 
-## Temporary tables and Views
-
-### Temporary tables
-These tables look just like permanent tables, but any data inserted into a temporary table will disappear at some point (generally at the
-end of a transaction or when your database session is closed).
-
-```sql
-
-CREATE TEMPORARY TABLE actors_j (actor_id smallint(5), first_name varchar(45), last_name varchar(45));
-
-INSERT INTO actors_j
--> SELECT actor_id, first_name, last_name
--> FROM actor
--> WHERE last_name LIKE 'J%';
-
-```
-These rows are held in memory temporarily and will disappear after your ses‐sion is closed.
-
-### Views
-A view is a query that is stored in the data dictionary. It looks and acts like a table, but
-there is no data associated with a view (this is why I call it a virtual table).
-
-```sql
-CREATE VIEW cust_vw AS SELECT customer_id, first_name, last_name, active FROM customer;
-```
-
-When the view is created, no additional data is generated or stored: the server simply
-tucks away the select statement for future use. Now that the view exists, you can
-issue queries against it, as in:
-
-```sql
-mysql> SELECT first_name, last_name FROM cust_vw WHERE active = 0;
-```
-
 ## Querying Multiple Tables
 
 ### Cartesian Product
@@ -117,20 +83,6 @@ the Cartesian product, which is every permutation of the two tables. Each row ge
 ```sql
 SELECT c.first_name, c.last_name, a.address FROM customer c JOIN address a;
 ```
-+------------+-----------+----------------------+
-| first_name | last_name | address |
-+------------+-----------+----------------------+
-| MARY | SMITH | 47 MySakila Drive |
-| PATRICIA | JOHNSON | 47 MySakila Drive |
-| LINDA | WILLIAMS | 47 MySakila Drive |
-| BARBARA | JONES | 47 MySakila Drive |
-...
-| SETH | HANNON | 1325 Fukuyama Street |
-| KENT | ARSENAULT | 1325 Fukuyama Street |
-| TERRANCE | ROUSH | 1325 Fukuyama Street |
-| RENE | MCALISTER | 1325 Fukuyama Street |
-| EDUARDO | HIATT | 1325 Fukuyama Street |
-+------------+-----------+----------------------+
 
 ### Inner Joins
 
@@ -182,6 +134,41 @@ SELECT c.first_name, c.last_name, addr.address, addr.city
 -> ) addr
 -> ON c.address_id = addr.address_id;
 
+```
+
+
+## Temporary tables and Views
+
+### Temporary tables
+These tables look just like permanent tables, but any data inserted into a temporary table will disappear at some point (generally at the
+end of a transaction or when your database session is closed).
+
+```sql
+
+CREATE TEMPORARY TABLE actors_j (actor_id smallint(5), first_name varchar(45), last_name varchar(45));
+
+INSERT INTO actors_j
+-> SELECT actor_id, first_name, last_name
+-> FROM actor
+-> WHERE last_name LIKE 'J%';
+
+```
+These rows are held in memory temporarily and will disappear after your ses‐sion is closed.
+
+### Views
+A view is a query that is stored in the data dictionary. It looks and acts like a table, but
+there is no data associated with a view (this is why I call it a virtual table).
+
+```sql
+CREATE VIEW cust_vw AS SELECT customer_id, first_name, last_name, active FROM customer;
+```
+
+When the view is created, no additional data is generated or stored: the server simply
+tucks away the select statement for future use. Now that the view exists, you can
+issue queries against it, as in:
+
+```sql
+mysql> SELECT first_name, last_name FROM cust_vw WHERE active = 0;
 ```
 
 ## Column Aliases
