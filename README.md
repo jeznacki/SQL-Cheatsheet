@@ -2,6 +2,16 @@
 
 ## Populating and Modifying Tables
 
+| first_name | last_name |
+|------------|-----------|
+| JENNIFER | DAVIS |
+| JUDY | DEAN |
+| JODIE | DEGENERES |
+| JULIANNE | DENCH |
+| MARY | TANDY |
+| MENA | TEMPLE |
+| JENNIFER | DAVIS |
+
 ### Create Table
 
 ```sql
