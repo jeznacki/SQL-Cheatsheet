@@ -4,7 +4,6 @@
 
 ## Populating and Modifying Tables
 
-
 ### Create Table
 
 ```sql
@@ -22,13 +21,13 @@ id INT AUTO_INCREMENT,
 );
 ```
 
-### Delete / Drop Table
+### Delete Table
 
 ```sql
 DROP TABLE tablename;
 ```
 
-### Insert Row / Record
+### Insert Row
 
 ```sql
 INSERT INTO users (first_name, last_name, email, password, location, dept, is_admin, register_date) values ('Brad', 'Traversy', 'brad@gmail.com', '123456','Massachusetts', 'development', 1, now());
@@ -51,8 +50,15 @@ UPDATE person
 -> WHERE person_id = 1;
 ```
 
+### Deleting Data
+```sql
+DELETE FROM person WHERE person_id = 2;
+```
 
-## Select
+## Query 
+
+
+### Select Clause
 
 ```sql
 SELECT * FROM users;
@@ -67,6 +73,36 @@ SELECT * FROM users WHERE location='Massachusetts' AND dept='sales';
 SELECT * FROM users WHERE is_admin = 1;
 SELECT * FROM users WHERE is_admin > 0;
 ```
+
+## Column Aliases
+```sql
+
+SELECT language_id,
+-> 'COMMON' language_usage,
+-> language_id * 3.1415927 lang_pi_value,
+-> upper(name) language_name
+-> FROM language;
+
++-------------+----------------+---------------+---------------+
+| language_id | language_usage | lang_pi_value | language_name |
++-------------+----------------+---------------+---------------+
+| 1 | COMMON | 3.1415927 | ENGLISH |
+| 2 | COMMON | 6.2831854 | ITALIAN |
+| 3 | COMMON | 9.4247781 | JAPANESE |
+| 4 | COMMON | 12.5663708 | MANDARIN |
+| 5 | COMMON | 15.7079635 | FRENCH |
+| 6 | COMMON | 18.8495562 | GERMAN |
++-------------+----------------+---------------+---------------+
+
+SELECT language_id,
+-> 'COMMON' AS language_usage,
+-> language_id * 3.1415927 AS lang_pi_value,
+-> upper(name) AS language_name
+-> FROM language;
+
+```
+
+
 
 ## Delete Row
 
