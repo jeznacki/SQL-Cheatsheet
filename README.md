@@ -2,7 +2,7 @@
 
 ![Screenshot](screenshot.png) //image example
 
-##Populating and Modifying Tables
+## Populating and Modifying Tables
 
 
 ### Create Table
