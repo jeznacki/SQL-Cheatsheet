@@ -39,6 +39,8 @@ UPDATE person SET street = '1225 Tremont St.',city = 'Boston', state = 'MA', cou
 DELETE FROM person WHERE person_id = 2;
 ```
 
+
+
 ## Where Clause
 
 ```sql
@@ -139,6 +141,8 @@ SELECT f.title
  WHERE f.prequel_film_id IS NOT NULL;
 ```
 
+
+
 ## SETS
 when performing set operations on two data sets, the following guidelines must apply:
 
@@ -188,6 +192,7 @@ SELECT c.first_name, c.last_name
 FROM customer c
 WHERE c.first_name LIKE 'J%' AND c.last_name LIKE 'D%';
 ```
+
 
 
 ## Temporary tables and Views
