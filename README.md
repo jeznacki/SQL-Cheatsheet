@@ -41,13 +41,6 @@ UPDATE person SET street = '1225 Tremont St.',city = 'Boston', state = 'MA', cou
 DELETE FROM person WHERE person_id = 2;
 ```
 
-## Select Clause
-
-```sql
-SELECT * FROM users;
-SELECT first_name, last_name FROM users;
-```
-
 ## Where Clause
 
 ```sql
