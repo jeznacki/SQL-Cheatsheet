@@ -128,7 +128,7 @@ INNER JOIN
   ON c.address_id = addr.address_id;
 
 ```
-## Self-Joins
+### Self-Joins
 
 you can actually join a table to itself. This might seem like a strange thing to do at first, but there are valid reasons for doing so. Some tables include a self-referencing foreign key, which means that it includes a column that points to the primary key within the same table.
 
@@ -140,6 +140,37 @@ SELECT f.title
  ON f_prnt.film_id = f.prequel_film_id
  WHERE f.prequel_film_id IS NOT NULL;
 ```
+
+## SETS
+
+### UNION & UNION ALL
+union sorts the combined set and removes duplicates, whereas union all does not.
+
+![alt text](https://tinyurl.com/yejgzke5)
+
+```sql
+SELECT 'CUST' typ, c.first_name, c.last_name
+ FROM customer c
+ UNION ALL
+ SELECT 'ACTR' typ, a.first_name, a.last_name
+ FROM actor a;
+```
+```sql
+SELECT f.title
+ FROM film f
+ INNER JOIN film f_prnt
+ ON f_prnt.film_id = f.prequel_film_id
+ WHERE f.prequel_film_id IS NOT NULL;
+```
+```sql
+SELECT f.title
+ FROM film f
+ INNER JOIN film f_prnt
+ ON f_prnt.film_id = f.prequel_film_id
+ WHERE f.prequel_film_id IS NOT NULL;
+```
+
+
 
 ## Temporary tables and Views
 
