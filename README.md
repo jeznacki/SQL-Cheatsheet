@@ -146,7 +146,7 @@ SELECT f.title
 ### UNION & UNION ALL
 union sorts the combined set and removes duplicates, whereas union all does not.
 
-[What is this](myimage.png)
+![See Image](myimage.png)
 
 ```sql
 SELECT 'CUST' typ, c.first_name, c.last_name
