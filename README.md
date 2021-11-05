@@ -31,23 +31,13 @@ DROP TABLE tablename;
 
 ```sql
 INSERT INTO users (first_name, last_name, email, password, location, dept, is_admin, register_date) values ('Brad', 'Traversy', 'brad@gmail.com', '123456','Massachusetts', 'development', 1, now());
-```
 
-#### Insert Multiple Rows
-
-```sql
 INSERT INTO users (first_name, last_name, email, password, location, dept,  is_admin, register_date) values ('Fred', 'Smith', 'fred@gmail.com', '123456', 'New York', 'design', 0, now()), ('Sara', 'Watson', 'sara@gmail.com', '123456', 'New York', 'design', 0, now()),('Will', 'Jackson', 'will@yahoo.com', '123456', 'Rhode Island', 'development', 1, now()),('Paula', 'Johnson', 'paula@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now()),('Tom', 'Spears', 'tom@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now());
 ```
 
 ### Updating Data
 ```sql
-UPDATE person
--> SET street = '1225 Tremont St.',
--> city = 'Boston',
--> state = 'MA',
--> country = 'USA',
--> postal_code = '02138'
--> WHERE person_id = 1;
+UPDATE person SET street = '1225 Tremont St.',city = 'Boston', state = 'MA', country = 'USA', postal_code = '02138' WHERE person_id = 1;
 ```
 
 ### Deleting Data
@@ -97,7 +87,7 @@ SELECT language_id,'COMMON' AS language_usage, language_id * 3.1415927 AS lang_p
 ```
 
 ### Removing Duplicates
-//DISTINCT
+DISTINCT
 
 ```sql
 SELECT DISTINCT actor_id FROM film_actor ORDER BY actor_id;
