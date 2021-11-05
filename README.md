@@ -60,15 +60,17 @@ SELECT * FROM rental WHERE rental_date BETWEEN '2005-06-14' AND '2005-06-16';
 ```
 ### Using subqueries
 ```sql
-SELECT title, rating FROM film
--> WHERE rating IN (SELECT rating FROM film WHERE title LIKE '%PET%');
+SELECT title, rating FROM film WHERE rating IN (SELECT rating FROM film WHERE title LIKE '%PET%');
 ```
 
 ### Matching Conditions
 ```sql
 SELECT * FROM customer WHERE left(last_name, 1) = 'Q';
 SELECT * FROM customer WHERE last_name LIKE '_A_T%S';
- /*regular expressions */
+
+// regular expressions
+
+SELECT last_name, first_name FROM customerWHERE last_name REGEXP '^[QY]';
 
 ```
 
