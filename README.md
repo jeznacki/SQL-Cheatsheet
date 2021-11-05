@@ -1,5 +1,8 @@
 # MySQL Cheat Sheet
 
+![Screenshot](screenshot.png) //image example
+
+
 ## Create Table
 
 ```sql
