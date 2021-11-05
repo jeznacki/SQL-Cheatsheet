@@ -2,15 +2,6 @@
 
 ## Populating and Modifying Tables
 
-| first_name | last_name |
-|------------|-----------|
-| JENNIFER | DAVIS |
-| JUDY | DEAN |
-| JODIE | DEGENERES |
-| JULIANNE | DENCH |
-| MARY | TANDY |
-| MENA | TEMPLE |
-| JENNIFER | DAVIS |
 
 ### Create Table
 
@@ -49,7 +40,7 @@ UPDATE person SET street = '1225 Tremont St.',city = 'Boston', state = 'MA', cou
 DELETE FROM person WHERE person_id = 2;
 ```
 
-
+<br /><br />
 
 ## Where Clause
 
@@ -76,6 +67,7 @@ SELECT * FROM customer WHERE last_name LIKE '_A_T%S';
 SELECT * FROM customerWHERE last_name REGEXP '^[QY]';
 ```
 
+<br /><br />
 
 ## Querying Multiple Tables
 
@@ -151,7 +143,7 @@ SELECT f.title
  WHERE f.prequel_film_id IS NOT NULL;
 ```
 
-
+<br /><br />
 
 ## SETS
 when performing set operations on two data sets, the following guidelines must apply:
@@ -203,7 +195,7 @@ FROM customer c
 WHERE c.first_name LIKE 'J%' AND c.last_name LIKE 'D%';
 ```
 
-
+<br /><br />
 
 ## Temporary tables and Views
 
