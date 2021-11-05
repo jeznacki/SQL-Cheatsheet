@@ -41,73 +41,69 @@ UPDATE person SET street = '1225 Tremont St.',city = 'Boston', state = 'MA', cou
 DELETE FROM person WHERE person_id = 2;
 ```
 
-## Query 
-
-
-### Select Clause
+## Select Clause
 
 ```sql
 SELECT * FROM users;
 SELECT first_name, last_name FROM users;
 ```
 
-### Where Clause
+## Where Clause
 
 ```sql
 SELECT * FROM users WHERE location='Massachusetts';
 SELECT * FROM users WHERE location='Massachusetts' AND dept='sales';
 SELECT * FROM users WHERE is_admin = 1;
 SELECT * FROM users WHERE is_admin > 0;
+SELECT title, rating, rental_duration FROM film
+WHERE (rating = 'G' AND rental_duration >= 7) OR (rating = 'PG-13' AND rental_duration < 4);
 ```
 
-### Column Aliases
+
+## Column Aliases
 ```sql
 
 SELECT language_id, 'COMMON' language_usage, language_id * 3.1415927 lang_pi_value, upper(name) language_name FROM language;
 
-+-------------+----------------+---------------+---------------+
-| language_id | language_usage | lang_pi_value | language_name |
-+-------------+----------------+---------------+---------------+
-| 1 | COMMON | 3.1415927 | ENGLISH |
-| 2 | COMMON | 6.2831854 | ITALIAN |
-| 3 | COMMON | 9.4247781 | JAPANESE |
-| 4 | COMMON | 12.5663708 | MANDARIN |
-| 5 | COMMON | 15.7079635 | FRENCH |
-| 6 | COMMON | 18.8495562 | GERMAN |
-+-------------+----------------+---------------+---------------+
-
 //clearer
-
 SELECT language_id,'COMMON' AS language_usage, language_id * 3.1415927 AS lang_pi_value, upper(name) AS language_name FROM language;
+
+SELECT c.first_name, c.last_name FROM customer AS c 
+INNER JOIN rental AS r
+ON c.customer_id = r.customer_id
+WHERE date(r.rental_date) = '2005-06-14';
 
 ```
 
-### Removing Duplicates
+## Removing Duplicates
 DISTINCT
 
 ```sql
 SELECT DISTINCT actor_id FROM film_actor ORDER BY actor_id;
 ```
 
-### The from Clause
+## The from Clause
 
 ```sql
 DELETE FROM users WHERE id = 6;
 ```
 
-### Derived (subquery-generated) tables
+## Derived (subquery-generated) tables
 
 ```sql
-SELECT concat(cust.last_name, ', ', cust.first_name) full_name FROM (SELECT first_name, last_name, email FROM customer WHERE first_name = 'JESSIE' ) cust;
+SELECT concat(cust.last_name, ', ', cust.first_name) full_name 
+-> FROM (SELECT first_name, last_name, email FROM customer WHERE first_name = 'JESSIE' ) cust;
 
 +---------------+
 | full_name |
 +---------------+
-
 | BANKS, JESSIE |
 | MILAM, JESSIE |
 +---------------+
 ```
+
+
+## Temporary tables and Views
 
 ### Temporary tables
 These tables look just like permanent tables, but any data inserted into a temporary table will disappear at some point (generally at the
@@ -130,9 +126,7 @@ A view is a query that is stored in the data dictionary. It looks and acts like 
 there is no data associated with a view (this is why I call it a virtual table).
 
 ```sql
-CREATE VIEW cust_vw AS
--> SELECT customer_id, first_name, last_name, active
--> FROM customer;
+CREATE VIEW cust_vw AS SELECT customer_id, first_name, last_name, active FROM customer;
 ```
 
 When the view is created, no additional data is generated or stored: the server simply
@@ -140,11 +134,10 @@ tucks away the select statement for future use. Now that the view exists, you ca
 issue queries against it, as in:
 
 ```sql
-mysql> SELECT first_name, last_name
--> FROM cust_vw
--> WHERE active = 0;
-
+mysql> SELECT first_name, last_name FROM cust_vw WHERE active = 0;
 ```
+
+
 
 
 
