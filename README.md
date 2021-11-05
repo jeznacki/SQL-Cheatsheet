@@ -19,11 +19,9 @@ id INT AUTO_INCREMENT,
    register_date DATETIME,
    PRIMARY KEY(id)
 );
-```
 
-### Delete Table
+//delete table
 
-```sql
 DROP TABLE tablename;
 ```
 
@@ -35,13 +33,11 @@ INSERT INTO users (first_name, last_name, email, password, location, dept, is_ad
 INSERT INTO users (first_name, last_name, email, password, location, dept,  is_admin, register_date) values ('Fred', 'Smith', 'fred@gmail.com', '123456', 'New York', 'design', 0, now()), ('Sara', 'Watson', 'sara@gmail.com', '123456', 'New York', 'design', 0, now()),('Will', 'Jackson', 'will@yahoo.com', '123456', 'Rhode Island', 'development', 1, now()),('Paula', 'Johnson', 'paula@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now()),('Tom', 'Spears', 'tom@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now());
 ```
 
-### Updating Data
+### Update and Delete data
 ```sql
-UPDATE person SET street = '1225 Tremont St.',city = 'Boston', state = 'MA', country = 'USA', postal_code = '02138' WHERE person_id = 1;
-```
 
-### Deleting Data
-```sql
+UPDATE person SET street = '1225 Tremont St.',city = 'Boston', state = 'MA', country = 'USA', postal_code = '02138' WHERE person_id = 1;
+
 DELETE FROM person WHERE person_id = 2;
 ```
 
