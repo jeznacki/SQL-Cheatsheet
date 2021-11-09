@@ -9,6 +9,7 @@
 
 ## Populating and Modifying Tables
 
+
 ### Create Table
 
 ```sql
