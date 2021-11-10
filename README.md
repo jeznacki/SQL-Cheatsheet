@@ -7,7 +7,8 @@
 3. [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables)
 4. [Usnig Sets (UNION,INTERSECT)](https://github.com/jeznacki/SQL-Cheatsheet#sets)
 5. [Temporary tables & Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views)
-6. [Data Generation, Manipulation & Conversion](https://github.com/jeznacki/SQL-Cheatsheet#data-generation-manipulation-and-conversion)
+6. [Data Manipulation & Conversion Functions](https://github.com/jeznacki/SQL-Cheatsheet#data-generation-manipulation-and-conversion)
+7. [Data Grouping and Aggregates] (https://github.com/jeznacki/SQL-Cheatsheet#data-generation-manipulation-and-conversion)
 
 <br/>
 
@@ -276,7 +277,7 @@ SELECT first_name, last_name FROM cust_vw WHERE active = 0;
 ```
 <br/><br/>
 
-# Data Generation, Manipulation, and Conversion
+# Data Manipulation & Conversion Functions
 
 ## Strings
 
@@ -355,6 +356,9 @@ SELECT ROUND(72.49999), ROUND(72.5), ROUND(72.50001);
 ## Time/ Time Zones
 
 ### String-to-date conversions
+
+#### CAST
+
 ```sql
 SELECT CAST('2019-09-17 15:30:00' AS DATETIME);
 ```
@@ -362,6 +366,75 @@ SELECT CAST('2019-09-17 15:30:00' AS DATETIME);
 | CAST('2019-09-17 15:30:00' AS DATETIME) |
 |-----------------------------------------|
 | 2019-09-17 15:30:00 |
+
+If you need to generate temporal data from a string and the string is not in the proper form to use the **cast()** function, you can use a built-in function that allows you to
+provide a format string along with the date string. **str_to_date()**
+
+#### STR_TO_DATE
+
+```sql
+UPDATE rental  SET return_date = STR_TO_DATE('September 17, 2019', '%M %d, %Y') WHERE rental_id = 99999;
+```
+
+### Date manipulation
+
+#### DATE_ADD
+
+how to add five days to the current date:
+
+```sql
+SELECT DATE_ADD(CURRENT_DATE(), INTERVAL 5 DAY)
+```
+
+#### DAYNAME
+
+to determine which day of the week a certain date falls on,
+
+```sql
+SELECT DAYNAME('2019-09-18');
+```
+| DAYNAME('2019-09-18') |
+|-----------------------|
+| Wednesday |
+
+#### EXTRACT
+
+example, if you want to extract just the year portion of a datetime value, you can do the following:
+
+```sql
+SELECT EXTRACT(YEAR FROM '2019-09-18 22:19:05');
+```
+| EXTRACT(YEAR FROM '2019-09-18 22:19:05') |
+|------------------------------------------|
+| 2019 |
+
+#### DATE DIFFERENCE
+
+```sql
+SELECT DATEDIFF('2019-09-03', '2019-06-21');
+```
+
+| DATEDIFF('2019-09-03', '2019-06-21') |
+|--------------------------------------|
+| 74|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
