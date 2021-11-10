@@ -79,6 +79,12 @@ SELECT * FROM film WHERE (rating = 'G' AND rental_duration >= 7) OR (rating = 'P
 SELECT * FROM rental WHERE rental_date BETWEEN '2005-06-14' AND '2005-06-16';
 ```
 
+### DISTINCT - removing duplicates
+
+```sql
+SELECT DISTINCT actor_id FROM film_actor ORDER BY actor_id;
+```
+
 ### Column Aliases
 ```sql
 
@@ -307,6 +313,8 @@ SELECT INSERT('goodbye world', 9, 0, 'cruel ') string;
 
 #### MOD()
 
+the modulo operator
+
 ```sql
 SELECT MOD(10,4);
 ```
@@ -344,31 +352,19 @@ SELECT ROUND(72.49999), ROUND(72.5), ROUND(72.50001);
 | 72 | 73 | 73 |
 
 
+## Time/ Time Zones
 
-
-## Removing Duplicates
-DISTINCT
-
+### String-to-date conversions
 ```sql
-SELECT DISTINCT actor_id FROM film_actor ORDER BY actor_id;
+SELECT CAST('2019-09-17 15:30:00' AS DATETIME);
 ```
 
-## The from Clause
+| CAST('2019-09-17 15:30:00' AS DATETIME) |
+|-----------------------------------------|
+| 2019-09-17 15:30:00 |
 
-```sql
-DELETE FROM users WHERE id = 6;
-```
 
-## Derived (subquery-generated) tables
 
-```sql
-SELECT concat(cust.last_name, ', ', cust.first_name) full_name 
--> FROM (SELECT first_name, last_name, email FROM customer WHERE first_name = 'JESSIE' ) cust;
 
-+---------------+
-| full_name |
-+---------------+
-| BANKS, JESSIE |
-| MILAM, JESSIE |
-+---------------+
-```
+
+
