@@ -5,9 +5,9 @@
 1. [Populating & Modifying Tables (Basics)](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables)
 2. [(WHERE) Clause](https://github.com/jeznacki/SQL-Cheatsheet#where-clause)
 3. [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables)
-4. [Usnig Sets (UNION,INTERSECT)](https://github.com/jeznacki/SQL-Cheatsheet#sets)
+4. [Usnig Sets (UNION,INTERSECT)](https://github.com/jeznacki/SQL-Cheatsheet#usnig-sets-unionintersect)
 5. [Temporary tables & Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views)
-6. [Data Manipulation & Conversion Functions](https://github.com/jeznacki/SQL-Cheatsheet#data-generation-manipulation-and-conversion)
+6. [Data Manipulation & Conversion Functions](https://github.com/jeznacki/SQL-Cheatsheet#data-manipulation--conversion-functions)
 7. [Data Grouping and Aggregates] (https://github.com/jeznacki/SQL-Cheatsheet#data-generation-manipulation-and-conversion)
 
 <br/>
@@ -417,6 +417,10 @@ SELECT DATEDIFF('2019-09-03', '2019-06-21');
 | DATEDIFF('2019-09-03', '2019-06-21') |
 |--------------------------------------|
 | 74|
+
+# Data Grouping and Aggregates
+
+
 
 
 
