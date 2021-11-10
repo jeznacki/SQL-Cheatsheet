@@ -2,7 +2,7 @@
 
 <br/>
 
-1. [Populating & Modifying Tables](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables)
+1. [Populating & Modifying Tables (Basics)](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables)
 2. [(WHERE) Clause](https://github.com/jeznacki/SQL-Cheatsheet#where-clause)
 3. [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables)
 4. [Usnig Sets (UNION,INTERSECT)](https://github.com/jeznacki/SQL-Cheatsheet#sets)
@@ -13,7 +13,7 @@
 
 # Populating and Modifying Tables
 
-
+<br/>
 ### CREATE Table
 
 ```sql
@@ -34,20 +34,20 @@ id INT AUTO_INCREMENT,
 
 DROP TABLE tablename;
 ```
-
+<br/>
 ### INSERT table Row
 
 ```sql
 
-/* insert single row */
+/* single row */
 
 INSERT INTO users (first_name, last_name, email, password, location, dept, is_admin, register_date) values ('Brad', 'Traversy', 'brad@gmail.com', '123456','Massachusetts', 'development', 1, now());
 
-/* insert multiple rows */
+/* multiple rows */
 
 INSERT INTO users (first_name, last_name, email, password, location, dept,  is_admin, register_date) values ('Fred', 'Smith', 'fred@gmail.com', '123456', 'New York', 'design', 0, now()), ('Sara', 'Watson', 'sara@gmail.com', '123456', 'New York', 'design', 0, now()),('Will', 'Jackson', 'will@yahoo.com', '123456', 'Rhode Island', 'development', 1, now()),('Paula', 'Johnson', 'paula@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now()),('Tom', 'Spears', 'tom@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now());
 ```
-
+<br/>
 ### UPDATE and DELETE data
 ```sql
 
@@ -56,10 +56,19 @@ UPDATE person SET street = '1225 Tremont St.',city = 'Boston', state = 'MA', cou
 DELETE FROM person WHERE person_id = 2;
 ```
 
+<br/>
+### SELECT Clause
 
-<br /><br />
+```sql
+SELECT language_id, name, last_update FROM language;
+```
+| language_id | name | last_update |
+|-------------|----------|---------------------|
+| 1 | English | 2006-02-15 05:02:19 |
+| 2 | Italian | 2006-02-15 05:02:19 |
 
-# WHERE Clause
+<br/>
+### WHERE Clause
 
 ```sql
 SELECT * FROM users WHERE location='Massachusetts';
@@ -69,26 +78,29 @@ SELECT * FROM users WHERE is_admin > 0;
 SELECT * FROM film WHERE (rating = 'G' AND rental_duration >= 7) OR (rating = 'PG-13' AND rental_duration < 4);
 SELECT * FROM rental WHERE rental_date BETWEEN '2005-06-14' AND '2005-06-16';
 ```
+<br/>
+### Column Aliases
+```sql
+
+SELECT id,'COMMON' AS language_usage, language_id * 3.1415927 AS lang_pi_value, upper(name) AS language_name FROM language;
+
+```
+| id | language_usage | lang_pi_value | language_name |
+|-------------|---------------|---------------|---------------|
+| 1 | COMMON | 3.1415927 | ENGLISH |
+| 2 | COMMON | 6.2831854 | ITALIAN |
+
+<br/>
 ### Using Subqueries
 
 ```sql
 SELECT * FROM film WHERE rating IN (SELECT rating FROM film WHERE title LIKE '%PET%');
 ```
 
-### Matching Conditions
-```sql
-SELECT * FROM customer WHERE left(last_name, 1) = 'Q';
-SELECT * FROM customer WHERE last_name LIKE '_A_T%S';
-
-/* regular expressions */
-
-SELECT * FROM customerWHERE last_name REGEXP '^[QY]';
-```
-
 <br /><br />
 
 # Querying Multiple Tables
-
+<br/>
 ### Cartesian Product
 
 the Cartesian product, which is every permutation of the two tables. Each row gets joined all rows fromthe second table.
@@ -96,7 +108,7 @@ the Cartesian product, which is every permutation of the two tables. Each row ge
 ```sql
 SELECT c.first_name, c.last_name, a.address FROM customer c JOIN address a;
 ```
-
+<br/>
 ### Inner Joins
 
 This type of join is known as an inner join, and it is the most commonly used type of join. To clarify, if a row in the customer table has the value 999 in the
@@ -109,12 +121,13 @@ SELECT c.first_name, c.last_name, a.address FROM customer c JOIN address a ON c.
 
 SELECT c.first_name, c.last_name, a.address FROM customer c INNER JOIN address a ON c.address_id = a.address_id;
 ```
+<br/>
 ### The ANSI Join Syntax
 Another version of JOIN syntax
 ```sql
 SELECT c.first_name, c.last_name, a.address FROM customer c, address a WHERE c.address_id = a.address_id;
 ```
-
+<br/>
 ### Joining Three or More Tables
 
 ```sql
@@ -134,7 +147,7 @@ ON a.city_id = ct.city_id
 INNER JOIN customer c
 ON c.address_id = a.address_id;
 ```
-
+<br/>
 ### Using Subqueries as Tables
 ```sql
 
@@ -150,6 +163,8 @@ INNER JOIN
   ON c.address_id = addr.address_id;
 
 ```
+
+<br/>
 ### Self-Joins
 
 You can actually join a table to itself. This might seem like a strange thing to do at first, but there are valid reasons for doing so. Some tables include a self-referencing foreign key, which means that it includes a column that points to the primary key within the same table.
@@ -171,6 +186,7 @@ when performing set operations on two data sets, the following guidelines must a
 • Both data sets must have the same number of columns.
 • The data types of each column across the two data sets must be the same (or the server must be able to convert one to the other).
 
+<br/>
 ### UNION & UNION ALL
 union sorts the combined set and removes duplicates, whereas union all does not.
 
@@ -184,6 +200,7 @@ SELECT 'CUST' typ, c.first_name, c.last_name
  FROM actor a;
 ```
 
+<br/>
 ### Intersect Operator
 
 If the two queries in a compound query return nonoverlapping data sets, then the
@@ -201,6 +218,7 @@ FROM actor a
 WHERE a.first_name LIKE 'D%' AND a.last_name LIKE 'T%';
 ```
 
+<br/>
 ### The except Operator
 
 ![See Image](except.png)
@@ -218,7 +236,7 @@ WHERE c.first_name LIKE 'J%' AND c.last_name LIKE 'D%';
 <br /><br />
 
 # Temporary Tables and Views
-
+<br/>
 ### Temporary tables
 These tables look just like permanent tables, but any data inserted into a temporary table will disappear at some point (generally at the
 end of a transaction or when your database session is closed).
@@ -235,6 +253,7 @@ INSERT INTO actors_j
 ```
 These rows are held in memory temporarily and will disappear after your ses‐sion is closed.
 
+<br/>
 ### VIEWs
 A view is a query that is stored in the data dictionary. It looks and acts like a table, but
 there is no data associated with a view (this is why I call it a virtual table).
@@ -256,6 +275,7 @@ SELECT first_name, last_name FROM cust_vw WHERE active = 0;
 
 ### Strings
 
+<br/>
 #### Length
 ```sql
 SELECT LENGTH(char_fld) char_length, LENGTH(vchar_fld) varchar_length, LENGTH(text_fld) text_length FROM string_tbl;
@@ -264,7 +284,9 @@ SELECT LENGTH(char_fld) char_length, LENGTH(vchar_fld) varchar_length, LENGTH(te
 |-------------|----------------|-------------|
 | 28 | 28 | 28 |
 
+<br/>
 #### Position
+
 ```sql
 SELECT POSITION('characters' IN vchar_fld) FROM string_tbl;
 ```
@@ -272,6 +294,7 @@ SELECT POSITION('characters' IN vchar_fld) FROM string_tbl;
 |-------------------------------------|
 | 19 |
 
+<br/>
 #### Instert / Replace
 
 ```sql
@@ -281,6 +304,7 @@ SELECT INSERT('goodbye world', 9, 0, 'cruel ') string;
 |---------------------|
 | goodbye cruel world |
 
+<br/>
 ### Numeric
 
 //PAGE 131
@@ -288,19 +312,7 @@ SELECT INSERT('goodbye world', 9, 0, 'cruel ') string;
 
 
 
-### Column Aliases
-```sql
 
-SELECT language_id, 'COMMON' language_usage, language_id * 3.1415927 lang_pi_value, upper(name) language_name FROM language;
-
-//clearer
-SELECT language_id,'COMMON' AS language_usage, language_id * 3.1415927 AS lang_pi_value, upper(name) AS language_name FROM language;
-
-SELECT c.first_name, c.last_name FROM customer AS c 
-INNER JOIN rental AS r
-ON c.customer_id = r.customer_id
-WHERE date(r.rental_date) = '2005-06-14';
-```
 
 ## Removing Duplicates
 DISTINCT
