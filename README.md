@@ -420,6 +420,92 @@ SELECT DATEDIFF('2019-09-03', '2019-06-21');
 
 # Data Grouping and Aggregates
 
+| customer_id |
+|-------------|
+| 1 |
+| 1 |
+...
+| 599 |
+| 599 |
+
+
+### GROUP BY
+
+You can ask the database server to group the data for you by using the group by clause. Here’s the same query but employing a group by clause to group the rental
+data by customer ID:
+
+```sql
+SELECT customer_id FROM rental GROUP BY customer_id;
+```
+
+| customer_id |
+|-------------|
+| 1 |
+| 2 |
+...
+| 598 |
+| 599 |
+
+
+To see how many films each customer rented, you can use an **aggregate** function
+
+```sql
+SELECT customer_id, count(*) FROM rental GROUP BY customer_id;
+```
+
+| customer_id | count(\*) |
+|-------------|----------|
+| 1 | 32 |
+| 2 | 27 |
+
+
+### GROUP BY + HAVING
+
+You cannot refer to the aggregate function count(\*) in your **where** clause, you must put your group filter conditions in the having clause.
+
+```sql
+SELECT customer_id, count(*) FROM rental GROUP BY customer_id HAVING count(*) >= 40;
+```
+
+### Other aggregate Functions
+
+**max()** Returns the maximum value within a set
+
+**min()** Returns the minimum value within a set
+
+**avg()** Returns the average value across a set
+
+**sum()** Returns the sum of the values across a set
+
+**count()** Returns the number of values in a set
+
+
+All in one example
+
+```sql
+SELECT MAX(amount) max_amt, MIN(amount) min_amt,AVG(amount) avg_amt, SUM(amount) tot_amt, COUNT(*) num_payments FROM payment;
+```
+
+| max_amt | min_amt | avg_amt | tot_amt | num_payments |
+|--------|--------|----------|---------|--------------|
+| 11.99 | 0.00 | 4.200667 | 67416.51 | 16049 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
