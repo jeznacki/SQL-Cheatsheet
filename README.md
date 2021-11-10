@@ -2,14 +2,13 @@
 
 <br/>
 
-1. [Populating & Modifying Tables (Basics)](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables)
-2. [(WHERE) Clause](https://github.com/jeznacki/SQL-Cheatsheet#where-clause)
-3. [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables)
-4. [Usnig Sets (UNION,INTERSECT)](https://github.com/jeznacki/SQL-Cheatsheet#usnig-sets-unionintersect)
-5. [Temporary tables & Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views)
-6. [Data Manipulation & Conversion Functions](https://github.com/jeznacki/SQL-Cheatsheet#data-manipulation--conversion-functions)
-7. [Data Grouping and Aggregates](https://github.com/jeznacki/SQL-Cheatsheet#data-grouping-and-aggregates)
-
+1. [Populating & Modifying Tables](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables) - **CREATE, INSERT, UPDATE, WHERE, DISTINCT**
+2. [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables) - **INNER JOIN, SELECT**
+3. [Usnig Sets](https://github.com/jeznacki/SQL-Cheatsheet#usnig-sets-unionintersect) - **UNION ALL, INTERSECT**
+4. [Temporary tables & Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views) - **VIEW, TEMPORARY TABLE**
+5. [Data Manipulation & Conversion](https://github.com/jeznacki/SQL-Cheatsheet#data-manipulation--conversion-functions) - **LENGTH(), REPLACE(), POSITION(), CEIL(), FLOOR(), STR_TO_DATE()**
+6. [Data Grouping and Aggregates](https://github.com/jeznacki/SQL-Cheatsheet#data-grouping-and-aggregates) - **GROUP BY, HAVING, MAX(), MIN(), COUNT(), SUM() AVG()**
+7. [Subqueries]
 <br/>
 
 # Populating and Modifying Tables
@@ -489,6 +488,56 @@ SELECT MAX(amount) max_amt, MIN(amount) min_amt,AVG(amount) avg_amt, SUM(amount)
 | max_amt | min_amt | avg_amt | tot_amt | num_payments |
 |--------|--------|----------|---------|--------------|
 | 11.99 | 0.00 | 4.200667 | 67416.51 | 16049 |
+
+### Advanced examples
+
+**Multicolumn Grouping**
+
+```sql
+SELECT fa.actor_id, f.rating, count(*)
+ FROM film_actor fa
+   INNER JOIN film f
+   ON fa.film_id = f.film_id
+ GROUP BY fa.actor_id, f.rating
+ ORDER BY 1,2;
+```
+
+| actor_id | rating | count(\*) |
+|----------|--------|----------|
+| 1 | G | 4 |
+| 1 | PG | 6 |
+| 1 | PG-13 | 1 |
+| 1 | R | 3 |
+| 1 | NC-17 | 5 |
+| 2 | G | 7
+
+**Multicolumn Grouping with filtering**
+
+```sql
+SELECT fa.actor_id, f.rating, count(*)
+  FROM film_actor fa
+   INNER JOIN film f
+   ON fa.film_id = f.film_id
+ WHERE f.rating IN ('G','PG')
+ GROUP BY fa.actor_id, f.rating
+ HAVING count(*) > 9;
+```
+
+| actor_id | rating | count(\*) |
+|----------|--------|----------|
+| 137 | PG | 10 |
+| 37 | PG | 12 |
+| 180 | PG | 12 |
+| 7 | G | 10 |
+| 83 | G | 14 |
+| 129 | G | 12 |
+| 111 | PG | 15 |
+| 44 | PG | 12 |
+| 26 | PG | 11 |
+| 92 | PG | 12 |
+
+# Subqueries
+
 
 
 
