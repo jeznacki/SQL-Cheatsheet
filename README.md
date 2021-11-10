@@ -8,7 +8,7 @@
 4. [Usnig Sets (UNION,INTERSECT)](https://github.com/jeznacki/SQL-Cheatsheet#usnig-sets-unionintersect)
 5. [Temporary tables & Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views)
 6. [Data Manipulation & Conversion Functions](https://github.com/jeznacki/SQL-Cheatsheet#data-manipulation--conversion-functions)
-7. [Data Grouping and Aggregates] (https://github.com/jeznacki/SQL-Cheatsheet#data-generation-manipulation-and-conversion)
+7. [Data Grouping and Aggregates](https://github.com/jeznacki/SQL-Cheatsheet#data-grouping-and-aggregates)
 
 <br/>
 
