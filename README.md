@@ -1,6 +1,6 @@
 # SQL Cheat Sheet
 
-<br/>
+#### BASICS
 
 1. [Populating & Modifying Tables](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables) - **CREATE, INSERT, UPDATE, WHERE, DISTINCT**
 2. [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables) - **INNER JOIN, SELECT**
@@ -8,7 +8,10 @@
 4. [Temporary tables & Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views) - **VIEW, TEMPORARY TABLE**
 5. [Data Manipulation & Conversion](https://github.com/jeznacki/SQL-Cheatsheet#data-manipulation--conversion-functions) - **LENGTH(), REPLACE(), POSITION(), CEIL(), FLOOR(), STR_TO_DATE()**
 6. [Data Grouping and Aggregates](https://github.com/jeznacki/SQL-Cheatsheet#data-grouping-and-aggregates) - **GROUP BY, HAVING, MAX(), MIN(), COUNT(), SUM() AVG()**
-7. [Subqueries](https://github.com/jeznacki/SQL-Cheatsheet#subqueries) - **SELECT * FROM (SELECT * FROM other_table)**
+
+#### ADVANCED
+1. [Subqueries](https://github.com/jeznacki/SQL-Cheatsheet#subqueries) - **SELECT * FROM (SELECT * FROM other_table)**
+2. [Joins](https://github.com/jeznacki/SQL-Cheatsheet#joins)
 <br/>
 
 # Populating and Modifying Tables
