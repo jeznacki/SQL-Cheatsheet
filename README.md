@@ -1,11 +1,11 @@
 # SQL Cheat Sheet
 
-- [Populating and Modifying Tables](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables)
-- [Where Clause](where_clause.md)
-- [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables)
-- [SETS](https://github.com/jeznacki/SQL-Cheatsheet#sets)
-- [Temporary tables and Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views)
-- [Data Generation, Manipulation,and Conversion](https://github.com/jeznacki/SQL-Cheatsheet#data-generation-manipulation-and-conversion)
+- [Populating and Modifying Tables](README.md#populating-and-modifying-tables)
+- [Where](where_clause.md)
+- [Querying Multiple Tables](multiple_tables.md)
+- [Using SETS (UNION, INTERSECT)](sets.md)
+- [Temporary tables and Views](temporary_tables.md)
+- [Data Generation, Manipulation,and Conversion](data_manipulation.md)
 
 ## Populating and Modifying Tables
 
