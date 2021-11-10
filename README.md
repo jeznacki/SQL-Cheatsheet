@@ -8,7 +8,7 @@
 4. [Temporary tables & Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views) - **VIEW, TEMPORARY TABLE**
 5. [Data Manipulation & Conversion](https://github.com/jeznacki/SQL-Cheatsheet#data-manipulation--conversion-functions) - **LENGTH(), REPLACE(), POSITION(), CEIL(), FLOOR(), STR_TO_DATE()**
 6. [Data Grouping and Aggregates](https://github.com/jeznacki/SQL-Cheatsheet#data-grouping-and-aggregates) - **GROUP BY, HAVING, MAX(), MIN(), COUNT(), SUM() AVG()**
-7. [Subqueries]
+7. [Subqueries](https://github.com/jeznacki/SQL-Cheatsheet#subqueries) - **SELECT * FROM (SELECT * FROM other_table)**
 <br/>
 
 # Populating and Modifying Tables
@@ -537,6 +537,73 @@ SELECT fa.actor_id, f.rating, count(*)
 | 92 | PG | 12 |
 
 # Subqueries
+
+### Simple example
+
+```sql
+SELECT customer_id, first_name, last_name
+ FROM customer
+ WHERE customer_id = (SELECT MAX(customer_id) FROM customer);
+```
+
+### Noncorrelated Subqueries
+
+it may be exe‐cuted alone and does not reference anything from the containing statement.
+
+```sql
+SELECT city_id, city
+ FROM city
+ WHERE country_id = (SELECT country_id FROM country WHERE country = 'India');
+ 
+SELECT city_id, city
+ FROM city
+ WHERE country_id NOT IN (SELECT country_id  FROM country  WHERE country IN ('Canada','Mexico'));
+```
+
+
+### Multicolumn Subqueries
+
+you can use subqueries that return two or more columns.
+
+```sql
+SELECT fa.actor_id, fa.film_id
+ FROM film_actor fa
+ WHERE fa.actor_id IN
+ (SELECT actor_id FROM actor WHERE last_name = 'MONROE')
+ AND fa.film_id IN
+ (SELECT film_id FROM film WHERE rating = 'PG');
+```
+
+### Correlated Subqueries
+
+A correlated subquery is **dependent** on its containing statement from which it references **one or more columns.**
+
+```sql
+SELECT c.first_name, c.last_name
+ FROM customer c
+ WHERE 20 =
+ (SELECT count(*) FROM rental r WHERE r.customer_id = c.customer_id); /* here it utilises c.customer.id */
+```
+
+## Subqueries as Data Sources
+
+Since a subquery generates a result set containing rows and columns of data, it is perfectly valid to include subqueries in your from clause along with tables.
+
+```sql
+SELECT c.first_name, c.last_name,
+ pymnt.num_rentals, pymnt.tot_payments
+ FROM customer c
+  INNER JOIN
+   (SELECT customer_id, count(*) num_rentals, sum(amount) tot_payments
+     FROM payment
+     GROUP BY customer_id
+   ) pymnt /* definded as a table */
+   ON c.customer_id = pymnt.customer_id;
+```
+
+# JOINS
+
+
 
 
 
