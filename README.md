@@ -272,9 +272,9 @@ SELECT first_name, last_name FROM cust_vw WHERE active = 0;
 
 # Data Generation, Manipulation, and Conversion
 
-### Strings
+## Strings
 
-#### Length
+#### LENGTH()
 ```sql
 SELECT LENGTH(char_fld) char_length, LENGTH(vchar_fld) varchar_length, LENGTH(text_fld) text_length FROM string_tbl;
 ```
@@ -283,7 +283,7 @@ SELECT LENGTH(char_fld) char_length, LENGTH(vchar_fld) varchar_length, LENGTH(te
 | 28 | 28 | 28 |
 
 
-#### Position
+#### POSITION()
 
 ```sql
 SELECT POSITION('characters' IN vchar_fld) FROM string_tbl;
@@ -293,7 +293,7 @@ SELECT POSITION('characters' IN vchar_fld) FROM string_tbl;
 | 19 |
 
 
-#### Instert / Replace
+#### INSERT() / REPLACE()
 
 ```sql
 SELECT INSERT('goodbye world', 9, 0, 'cruel ') string;
@@ -303,11 +303,45 @@ SELECT INSERT('goodbye world', 9, 0, 'cruel ') string;
 | goodbye cruel world |
 
 
-### Numeric
+## Numeric
 
-//PAGE 131
+#### MOD()
 
+```sql
+SELECT MOD(10,4);
+```
 
+| MOD(10,4) |
+|-----------|
+| 2 |
+
+#### CEIL() / FLOOR() / ROUND()
+
+Controlling Number Precision
+
+```sql
+SELECT CEIL(72.445), FLOOR(72.445);
+```
+
+| CEIL(72.445) | FLOOR(72.445) |
+|--------------|---------------|
+| 73 | 72 |
+
+```sql
+SELECT CEIL(72.000000001), FLOOR(72.999999999);
+```
+
+| CEIL(72.000000001) | FLOOR(72.999999999) |
+|--------------------|---------------------|
+| 73 | 72 |
+
+```sql
+SELECT ROUND(72.49999), ROUND(72.5), ROUND(72.50001);
+```
+
+| ROUND(72.49999) | ROUND(72.5) | ROUND(72.50001) |
+|-----------------|-------------|-----------------|
+| 72 | 73 | 73 |
 
 
 
