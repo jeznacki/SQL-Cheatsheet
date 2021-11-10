@@ -1,16 +1,20 @@
 # SQL Cheat Sheet
 
-- [Populating and Modifying Tables](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables)
-- [Where Clause](https://github.com/jeznacki/SQL-Cheatsheet#where-clause)
-- [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables)
-- [SETS](https://github.com/jeznacki/SQL-Cheatsheet#sets)
-- [Temporary tables and Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views)
-- [Data Generation, Manipulation,and Conversion](https://github.com/jeznacki/SQL-Cheatsheet#data-generation-manipulation-and-conversion)
+<br/>
 
-## Populating and Modifying Tables
+1. [Populating & Modifying Tables](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables)
+2. [(WHERE) Clause](https://github.com/jeznacki/SQL-Cheatsheet#where-clause)
+3. [Querying Multiple Tables](https://github.com/jeznacki/SQL-Cheatsheet#querying-multiple-tables)
+4. [Usnig Sets (UNION,INTERSECT)](https://github.com/jeznacki/SQL-Cheatsheet#sets)
+5. [Temporary tables & Views](https://github.com/jeznacki/SQL-Cheatsheet#temporary-tables-and-views)
+6. [Data Generation, Manipulation & Conversion](https://github.com/jeznacki/SQL-Cheatsheet#data-generation-manipulation-and-conversion)
+
+<br/>
+
+# Populating and Modifying Tables
 
 
-### Create Table
+### CREATE Table
 
 ```sql
 CREATE TABLE users(
@@ -26,20 +30,25 @@ id INT AUTO_INCREMENT,
    PRIMARY KEY(id)
 );
 
-//delete table
+/* delete table */
 
 DROP TABLE tablename;
 ```
 
-### Insert Row
+### INSERT table Row
 
 ```sql
+
+/* insert single row */
+
 INSERT INTO users (first_name, last_name, email, password, location, dept, is_admin, register_date) values ('Brad', 'Traversy', 'brad@gmail.com', '123456','Massachusetts', 'development', 1, now());
+
+/* insert multiple rows */
 
 INSERT INTO users (first_name, last_name, email, password, location, dept,  is_admin, register_date) values ('Fred', 'Smith', 'fred@gmail.com', '123456', 'New York', 'design', 0, now()), ('Sara', 'Watson', 'sara@gmail.com', '123456', 'New York', 'design', 0, now()),('Will', 'Jackson', 'will@yahoo.com', '123456', 'Rhode Island', 'development', 1, now()),('Paula', 'Johnson', 'paula@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now()),('Tom', 'Spears', 'tom@yahoo.com', '123456', 'Massachusetts', 'sales', 0, now());
 ```
 
-### Update and Delete data
+### UPDATE and DELETE data
 ```sql
 
 UPDATE person SET street = '1225 Tremont St.',city = 'Boston', state = 'MA', country = 'USA', postal_code = '02138' WHERE person_id = 1;
@@ -47,9 +56,10 @@ UPDATE person SET street = '1225 Tremont St.',city = 'Boston', state = 'MA', cou
 DELETE FROM person WHERE person_id = 2;
 ```
 
+
 <br /><br />
 
-## Where Clause
+# WHERE Clause
 
 ```sql
 SELECT * FROM users WHERE location='Massachusetts';
@@ -59,7 +69,8 @@ SELECT * FROM users WHERE is_admin > 0;
 SELECT * FROM film WHERE (rating = 'G' AND rental_duration >= 7) OR (rating = 'PG-13' AND rental_duration < 4);
 SELECT * FROM rental WHERE rental_date BETWEEN '2005-06-14' AND '2005-06-16';
 ```
-### Using subqueries
+### Using Subqueries
+
 ```sql
 SELECT * FROM film WHERE rating IN (SELECT rating FROM film WHERE title LIKE '%PET%');
 ```
@@ -69,14 +80,14 @@ SELECT * FROM film WHERE rating IN (SELECT rating FROM film WHERE title LIKE '%P
 SELECT * FROM customer WHERE left(last_name, 1) = 'Q';
 SELECT * FROM customer WHERE last_name LIKE '_A_T%S';
 
-// regular expressions
+/* regular expressions */
 
 SELECT * FROM customerWHERE last_name REGEXP '^[QY]';
 ```
 
 <br /><br />
 
-## Querying Multiple Tables
+# Querying Multiple Tables
 
 ### Cartesian Product
 
@@ -93,7 +104,9 @@ address_id column and there’s no row in the address table with a value of 999 
 
 ```sql
 SELECT c.first_name, c.last_name, a.address FROM customer c JOIN address a ON c.address_id = a.address_id;
-//If you do not specify the type of join, then the server will do an inner join by default.
+
+/* If you do not specify the type of join, then the server will do an inner join by default. */
+
 SELECT c.first_name, c.last_name, a.address FROM customer c INNER JOIN address a ON c.address_id = a.address_id;
 ```
 ### The ANSI Join Syntax
@@ -112,7 +125,7 @@ ON c.address_id = a.address_id
 INNER JOIN city ct
 ON a.city_id = ct.city_id;
 
-//order is not important 
+/* order is not important  */
 
 SELECT c.first_name, c.last_name, ct.city
 FROM city ct
@@ -139,7 +152,7 @@ INNER JOIN
 ```
 ### Self-Joins
 
-you can actually join a table to itself. This might seem like a strange thing to do at first, but there are valid reasons for doing so. Some tables include a self-referencing foreign key, which means that it includes a column that points to the primary key within the same table.
+You can actually join a table to itself. This might seem like a strange thing to do at first, but there are valid reasons for doing so. Some tables include a self-referencing foreign key, which means that it includes a column that points to the primary key within the same table.
 
 
 ```sql
@@ -152,7 +165,7 @@ SELECT f.title
 
 <br /><br />
 
-## SETS
+# Usnig Sets (UNION,INTERSECT)
 when performing set operations on two data sets, the following guidelines must apply:
 
 • Both data sets must have the same number of columns.
@@ -204,7 +217,7 @@ WHERE c.first_name LIKE 'J%' AND c.last_name LIKE 'D%';
 
 <br /><br />
 
-## Temporary tables and Views
+# Temporary Tables and Views
 
 ### Temporary tables
 These tables look just like permanent tables, but any data inserted into a temporary table will disappear at some point (generally at the
@@ -222,7 +235,7 @@ INSERT INTO actors_j
 ```
 These rows are held in memory temporarily and will disappear after your ses‐sion is closed.
 
-### Views
+### VIEWs
 A view is a query that is stored in the data dictionary. It looks and acts like a table, but
 there is no data associated with a view (this is why I call it a virtual table).
 
@@ -239,7 +252,7 @@ SELECT first_name, last_name FROM cust_vw WHERE active = 0;
 ```
 <br/><br/>
 
-## Data Generation, Manipulation, and Conversion
+# Data Generation, Manipulation, and Conversion
 
 ### Strings
 
@@ -275,7 +288,7 @@ SELECT INSERT('goodbye world', 9, 0, 'cruel ') string;
 
 
 
-## Column Aliases
+### Column Aliases
 ```sql
 
 SELECT language_id, 'COMMON' language_usage, language_id * 3.1415927 lang_pi_value, upper(name) language_name FROM language;
@@ -287,7 +300,6 @@ SELECT c.first_name, c.last_name FROM customer AS c
 INNER JOIN rental AS r
 ON c.customer_id = r.customer_id
 WHERE date(r.rental_date) = '2005-06-14';
-
 ```
 
 ## Removing Duplicates
