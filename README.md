@@ -13,7 +13,7 @@
 1. [Subqueries](https://github.com/jeznacki/SQL-Cheatsheet#subqueries) - **SELECT * FROM (SELECT * FROM other_table)**
 2. [Joins](https://github.com/jeznacki/SQL-Cheatsheet#joins) - **OUTER JOIN, MULTIPLE TABLES, NATURAL JOIN**
 3. [SQL Conditionals](https://github.com/jeznacki/SQL-Cheatsheet/blob/main/README.md#sql-conditionals) - **CASE, WHEN, THEN**
-4. [Views]() - **VIEW**
+4. [Views](https://github.com/jeznacki/SQL-Cheatsheet/blob/main/README.md#views-1) - **VIEW**
 <br/>
 
 # Populating and Modifying Tables
