@@ -11,7 +11,9 @@
 
 #### ADVANCED
 1. [Subqueries](https://github.com/jeznacki/SQL-Cheatsheet#subqueries) - **SELECT * FROM (SELECT * FROM other_table)**
-2. [Joins](https://github.com/jeznacki/SQL-Cheatsheet#joins)
+2. [Joins](https://github.com/jeznacki/SQL-Cheatsheet#joins) - **OUTER JOIN, MULTIPLE TABLES, NATURAL JOIN**
+3. [SQL Conditionals]() - **CASE, WHEN, THEN**
+4. [Views]() - **VIEW**
 <br/>
 
 # Populating and Modifying Tables
@@ -605,6 +607,167 @@ SELECT c.first_name, c.last_name,
 ```
 
 # JOINS
+
+### OUTER JOIN
+
+If you want the query to return all rows, regardless of whether or not there are rows in the other table, you can use an **outer join**, which essentially makes the join condition optional:
+
+**INNER JOIN RESULT**
+
+```sql
+SELECT f.film_id, f.title, i.inventory_id
+ FROM film f
+ INNER JOIN inventory i
+   ON f.film_id = i.film_id
+  WHERE f.film_id BETWEEN 13 AND 15;
+```
+only results matching condition
+
+| film_id | title | inventory_id |
+|---------|--------------|-------------|
+| 13 | ALI FOREVER | 67 |
+| 13 | ALI FOREVER | 68 |
+| 13 | ALI FOREVER | 69 |
+| 13 | ALI FOREVER | 70 |
+| 15 | ALIEN CENTER | 71 |
+| 15 | ALIEN CENTER | 72 |
+
+
+**OUTER JOIN RESULT**
+
+```sql
+SELECT f.film_id, f.title, i.inventory_id
+   FROM film f
+   LEFT OUTER JOIN inventory i
+    ON f.film_id = i.film_id
+   WHERE f.film_id BETWEEN 13 AND 15;
+```
+
+all results matching condition
+
+
+| film_id | title | inventory_id |
+|---------|----------------|--------------|
+| 13 | ALI FOREVER | 67 |
+| 13 | ALI FOREVER | 68 |
+| 13 | ALI FOREVER | 69 |
+| 13 | ALI FOREVER | 70 |
+| 14 | ALICE FANTASIA | NULL |
+
+### MULTIPLE TABLES
+
+In some cases, you may want to outer-join one table with two other tables. For exam‐ple, the query from a prior section can be expanded to include data from the rental
+table:
+
+```sql
+
+SELECT f.film_id, f.title, i.inventory_id, r.rental_date
+ FROM film f
+  LEFT OUTER JOIN inventory i
+  ON f.film_id = i.film_id
+  LEFT OUTER JOIN rental r
+  ON i.inventory_id = r.inventory_id
+ WHERE f.film_id BETWEEN 13 AND 15;
+```
+
+### NATURAL JOIN
+
+With natural join you can skip join conditions and let the server decide and find columns with the same name 
+
+
+```sql
+SELECT c.first_name, c.last_name, date(r.rental_date)
+   FROM customer c
+   NATURAL JOIN rental r;
+```
+
+join, the server inspected the table definitions and added the join condition r.customer_id = c.customer_id to join the two tables.
+
+Sometimes you may have multipe columns with the **same name** the only way around this issue is to use a subquery to restrict the columns for at least
+one of the tables:
+
+```sql
+SELECT cust.first_name, cust.last_name, date(r.rental_date)
+ FROM
+  (SELECT customer_id, first_name, last_name
+   FROM customer
+  ) cust
+ NATURAL JOIN rental r;
+```
+
+# SQL Conditionals
+
+## Syntax
+
+```sql
+CASE
+   WHEN category.name IN ('Children','Family','Sports','Animation')
+      THEN 'All Ages'
+   WHEN category.name = 'Horror'
+      THEN 'Adult'
+   WHEN category.name IN ('Music','Games')
+      THEN 'Teens'
+   ELSE 'Other'
+END
+
+CASE category.name
+   WHEN 'Children' THEN 'All Ages'
+   WHEN 'Family' THEN 'All Ages'
+   WHEN 'Sports' THEN 'All Ages'
+   WHEN 'Animation' THEN 'All Ages'
+   WHEN 'Horror' THEN 'Adult'
+   WHEN 'Music' THEN 'Teens'
+   WHEN 'Games' THEN 'Teens'
+   ELSE 'Other'
+END
+```
+
+
+The mechanism used for conditional logic in SQL statements is the case expression, which can be utilized in **select, insert, update, and delete** statements.
+
+```sql
+SELECT first_name, last_name,
+   CASE
+    WHEN active = 1 THEN 'ACTIVE'
+    ELSE 'INACTIVE'
+   END activity_type
+ FROM customer;
+```
+returns the string **ACTIVE** or **INACTIVE** depending on the value ofb the customer.active column.
+
+| first_name | last_name | activity_type |
+|-------------|--------------|---------------|
+| MARY | SMITH | ACTIVE |
+| PATRICIA | JOHNSON | ACTIVE |
+| LINDA | WILLIAMS | ACTIVE |
+| BARBARA | JONES | ACTIVE |
+| ELIZABETH | BROWN | ACTIVE |
+
+
+### Subquery
+
+Expressions may return any type of expression, including subqueries. 
+
+Example with subquery: 
+
+```sql
+SELECT c.first_name, c.last_name,
+ CASE
+  WHEN active = 0 THEN 0
+  ELSE
+   (SELECT count(*) FROM rental r  WHERE r.customer_id = c.customer_id)
+ END num_rentals
+FROM customer c;
+```
+
+# VIEWS
+
+
+
+
+
+
+
 
 
 
