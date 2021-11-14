@@ -1,5 +1,6 @@
 # SQL Cheat Sheet
 
+
 #### BASICS
 
 1. [Populating & Modifying Tables](https://github.com/jeznacki/SQL-Cheatsheet#populating-and-modifying-tables) - **CREATE, INSERT, UPDATE, WHERE, DISTINCT**
