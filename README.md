@@ -17,6 +17,7 @@
 4. [Views](https://github.com/jeznacki/SQL-Cheatsheet/blob/main/README.md#views-1) - **VIEW**
 <br/>
 
+
 # Populating and Modifying Tables
 
 
